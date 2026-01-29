@@ -1,0 +1,16 @@
+<IfModule mod_rewrite.c>
+    Options -Multiviews
+    RewriteEngine On
+
+    # ATTENZIONE: RewriteBase deve iniziare con uno slash /
+    # Se la tua cartella si chiama 'compito', deve essere così:
+    RewriteBase /compito/JWT/public/
+
+    # Se non è una cartella vera
+    RewriteCond %{REQUEST_FILENAME} !-d
+    # Se non è un file vero
+    RewriteCond %{REQUEST_FILENAME} !-f
+
+    # Manda tutto a index.php
+    RewriteRule ^(.+)$ index.php?url=$1 [QSA,L]
+</IfModule>

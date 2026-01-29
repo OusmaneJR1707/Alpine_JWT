@@ -1,0 +1,13 @@
+Options -MultiViews
+RewriteEngine On
+# Imposta la base corretta (importante se sei su localhost/compito)
+RewriteBase /COMPITO/
+
+# 1. Se l'utente chiede la cartella "api", LASCIALA STARE (stop regole)
+RewriteRule ^api($|/) - [L]
+
+# 2. Se l'utente chiede risorse che sono GIA' dentro JWT, LASCIALO STARE (stop loop)
+RewriteRule ^JWT($|/) - [L]
+
+# 3. Se la richiesta non è per api e non è già per JWT, mandala dentro JWT
+RewriteRule ^(.*)$ JWT/$1 [L]
