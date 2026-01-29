@@ -96,7 +96,7 @@
         <div class="w-4/5 flex flex-col items-center">
             <div class="w-full items-center mt-20">
                 <div class="justify-center items-center text-center">
-                    <h1 class="text-2xl mb-2">Good Morning, Macja</h1>
+                    <h1 class="text-2xl mb-2">Good morning, Alfonso</h1>
                     <p class="text-xl text-gray-700">Let's get to work</p>
                 </div>
                 <div class="w-full flex items-center gap-2 px-8 mt-6">
@@ -139,12 +139,12 @@
                     <div class="flex items-center gap-4">
                         <img src="../assets/image.jpg" alt="" class="size-10 rounded-full">
                         <div>
-                            <p>Dario Bezzi</p>
-                            <p class="text-slate-800/80">andreasuru54@gmail.it</p>
+                            <p>Fabrizio Corona</p>
+                            <p class="text-slate-800/80">falsissimo@gmail.com</p>
                         </div>
                     </div>
                     <div>
-                        <p>Mecja SRL</p>
+                        <p>Corona's</p>
                         <span class="flex items-center gap-2">
                             <p>Attivo</p>
                             <div class="size-5 bg-green-400 rounded-full"></div>
