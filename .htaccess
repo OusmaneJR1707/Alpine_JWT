@@ -1,7 +1,7 @@
 Options -MultiViews
 RewriteEngine On
 # Imposta la base corretta (importante se sei su localhost/compito)
-RewriteBase /COMPITO/
+RewriteBase /ALPINE_JWT/
 
 # 1. Se l'utente chiede la cartella "api", LASCIALA STARE (stop regole)
 RewriteRule ^api($|/) - [L]

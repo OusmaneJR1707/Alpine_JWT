@@ -88,7 +88,7 @@ class Auth extends Controller
                     $result["token"],
                     [
                         'expires' => time() + 600,
-                        'path' => '/COMPITO/',
+                        'path' => '/ALPINE_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -103,7 +103,7 @@ class Auth extends Controller
                     $result["refresh_token"],
                     [
                         'expires' => time() + 86400,
-                        'path' => '/COMPITO/',
+                        'path' => '/ALPINE_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -116,7 +116,8 @@ class Auth extends Controller
                 exit();
             } else {
                 $errorMessage = $result["message"] ?? "Errore di autenticazione.";
-                $this->view("auth/login", ["error" => $errorMessage]);
+                $_SESSION['error'] = $errorMessage;
+                $this->view("auth/login");
                 return;
             }
         }
@@ -162,7 +163,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/COMPITO/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/COMPITO/JWT/public/assets/css/output.css" />
+    <link rel="stylesheet" href="/ALPINE_JWT/JWT/public/assets/css/output.css" />
     <link rel="icon" type="image/x-icon" href="/COMPITO/JWT/public/assets/imgs/favicon.ico">
     <title id="mainTitle">JWT | LOGIN</title>
 </head>
@@ -94,8 +94,12 @@
     </footer>
 </body>
 <script>
-    alert(<?= isset($data['error']) ? '"' . $data['error'] . '"' : '""' ?>);
+    <?php if(isset($_SESSION['error'])): ?>
+        // Usiamo json_encode per gestire caratteri speciali e apici nel testo
+        alert(<?php echo json_encode($_SESSION['error']); ?>);
+        <?php unset($_SESSION['error']); // Puliamo l'errore dopo averlo mostrato ?>
+    <?php endif; ?>
 </script>
-<script src="/COMPITO/JWT/public/assets/js/login.js"></script>
+<script src="/ALPINE_JWT/JWT/public/assets/js/login.js"></script>
 
 </html>

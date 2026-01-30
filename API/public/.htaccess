@@ -4,7 +4,7 @@
     
     # FIX: Aggiungi lo slash all'inizio! 
     # È un percorso URL, non un percorso file di Windows.
-    RewriteBase /COMPITO/API/public/
+    RewriteBase /ALPINE_JWT/API/public/
 
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
