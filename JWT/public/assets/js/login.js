@@ -44,10 +44,10 @@ document.addEventListener("DOMContentLoaded", () => {
     function switchMode(mode){
         if(mode==="login"){
             showLogin();
-            history.pushState({mode: "login"}, "", "/COMPITO/JWT/auth/login"); //cambia URL in /login senza ricaricare
+            history.pushState({mode: "login"}, "", "/ALPINE_JWT/JWT/auth/login"); //cambia URL in /login senza ricaricare
         } else {
             showRegister();
-            history.pushState({mode: "register"}, "", "/COMPITO/JWT/auth/register"); //cambia URL in /register senza ricaricare
+            history.pushState({mode: "register"}, "", "/ALPINE_JWT/JWT/auth/register"); //cambia URL in /register senza ricaricare
         }
     }
 

@@ -89,14 +89,13 @@
             </div>
             <div class="flex flex-col mb-10 items-start ml-4">
                 <h1 class="text-2xl">ANH-HERE</h1>
-                <p class="text-lg">Via Roma</p>
-                <p class="text-lg">Lo fanno solo per il POTERE!</p>
+                <p class="text-lg">Via Roma 66, Bergamo</p>
             </div>
         </div>
         <div class="w-4/5 flex flex-col items-center">
             <div class="w-full items-center mt-20">
                 <div class="justify-center items-center text-center">
-                    <h1 class="text-2xl mb-2">Good morning, Alfonso</h1>
+                    <h1 class="text-2xl mb-2">Good morning, <?= $data['datiUtente']->first_name; ?></h1>
                     <p class="text-xl text-gray-700">Let's get to work</p>
                 </div>
                 <div class="w-full flex items-center gap-2 px-8 mt-6">
@@ -216,6 +215,6 @@
         updateClock();
     </script>
 </body>
-<script src="/COMPITO/JWT/public/assets/js/sidebar.js"></script>
+<script src="/ALPINE_JWT/JWT/public/assets/js/sidebar.js"></script>
 
 </html>

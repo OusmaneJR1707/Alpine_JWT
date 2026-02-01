@@ -66,6 +66,7 @@ class Auth extends Controller
             "token" => $accessToken,          // Access Token
             "refresh_token" => $refreshToken,
             "role" => $user->role_id, // Refresh Token (Ora lo passiamo!)
+            "user_id" => $user->employee_id,
             "expires_in" => 600
         ]);
     }
@@ -114,6 +115,7 @@ class Auth extends Controller
             "status_code" => 200,
             "token" => $nuovoAccessToken,
             "role" => $user->role_id,
+            "user_id" => $user->employee_id,
             "expires_in" => 600
         ]);
     }

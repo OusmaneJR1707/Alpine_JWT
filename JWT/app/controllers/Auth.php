@@ -97,6 +97,7 @@ class Auth extends Controller
                 );
 
                 $_SESSION["role"] = $result["role"];
+                $_SESSION["user_id"] = $result["user_id"];
 
                 setcookie(
                     "refresh_token",
@@ -196,7 +197,7 @@ class Auth extends Controller
 
         $cookieName = 'refresh_token';
 
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Ritrona una stringa non stampare a video
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Ritorna una stringa non stampare a video
         curl_setopt($ch, CURLOPT_HEADER, false);        // Non includere gli header nella risposta
 
         // Imposta il cookie nell'intestazione della richiesta
@@ -225,7 +226,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/COMPITO/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,
@@ -241,7 +242,7 @@ class Auth extends Controller
                 $result["token"],
                 [
                     'expires' => time() + 600,
-                    'path' => '/COMPITO/',
+                    'path' => '/ALPINE_JWT/',
                     'domain' => '',
                     'secure' => false,
                     'httponly' => true,

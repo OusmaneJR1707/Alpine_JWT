@@ -18,6 +18,30 @@ class Users
     }
     public function getUserById($id)
     {
+        $query = "SELECT 
+                    E.first_name, 
+                    E.last_name, 
+                    E.status, 
+                    A.email, 
+                    D.department_name 
+                FROM employees E 
+                JOIN user_accounts A ON A.employee_id = E.id 
+                JOIN departments D ON E.department_id = D.id 
+                WHERE E.id = :id";
+
+        $this->db->query($query);
+        $this->db->bind(":id", $id);
+
+        $result = $this->db->singleResult();
+
+        if (!$result) {
+            return false;
+        }
+
+        return $result;
+    }
+    public function getUserAttendances($id)
+    {
         $query = "SELECT A.start_datetime, A.end_datetime FROM attendances A WHERE A.employee_id = :employee_id";
 
         $this->db->query($query);
