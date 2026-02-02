@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/ALPINE_JWT/JWT/public/assets/css/output.css">
-    <link rel="icon" type="image/x-icon" href="/COMPITO/JWT/public/assets/imgs/favicon.ico">
+    <link rel="stylesheet" href="<?= ASSETSROOT; ?>/css/output.css">
+    <link rel="icon" type="image/x-icon" href="<?= ASSETSROOT; ?>/imgs/favicon.ico">
     <title>JWT | NOME</title>
 </head>
 
@@ -95,12 +95,12 @@
         <div class="w-4/5 flex flex-col items-center">
             <div class="w-full items-center mt-20">
                 <div class="justify-center items-center text-center">
-                    <h1 class="text-2xl mb-2">Good morning, <?= $data['datiUtente']->first_name; ?></h1>
+                    <h1 class="text-2xl mb-2">Good morning, <?= $data["datiUtente"]->first_name?></h1>
                     <p class="text-xl text-gray-700">Let's get to work</p>
                 </div>
                 <div class="w-full flex items-center gap-2 px-8 mt-6">
                     <hr class="grow" />
-                    <img src="../assets/img.png" alt="">
+                    <img src="<?= ASSETSROOT; ?>/imgs/default.png" alt="">
                     <hr class="grow" />
                 </div>
             </div>
@@ -136,7 +136,7 @@
                 ?>
                 <div class="w-full flex items-center justify-between bg-purple-400 p-3 mb-2 rounded-lg">
                     <div class="flex items-center gap-4">
-                        <img src="../assets/image.jpg" alt="" class="size-10 rounded-full">
+                        <img src="<?= ASSETSROOT; ?>/imgs/default.png" alt="" class="size-10 rounded-full">
                         <div>
                             <p>Fabrizio Corona</p>
                             <p class="text-slate-800/80">falsissimo@gmail.com</p>
@@ -215,6 +215,6 @@
         updateClock();
     </script>
 </body>
-<script src="/ALPINE_JWT/JWT/public/assets/js/sidebar.js"></script>
+<script src="<?= ASSETSROOT; ?>/js/sidebar.js"></script>
 
 </html>

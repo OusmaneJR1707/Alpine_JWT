@@ -22,6 +22,7 @@ JWT/node_modules/
 # Non caricare perché: contengono password DB, secret key JWT, dati sensibili
 # Ogni sviluppatore deve avere la propria configurazione locale
 **/config/config.php
+!**/config/config.example.php
 .env
 .env.local
 

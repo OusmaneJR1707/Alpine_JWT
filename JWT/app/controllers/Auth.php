@@ -195,8 +195,6 @@ class Auth extends Controller
 
         $ch = curl_init($apiUrl);
 
-        $cookieName = 'refresh_token';
-
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true); //Ritorna una stringa non stampare a video
         curl_setopt($ch, CURLOPT_HEADER, false);        // Non includere gli header nella risposta
 

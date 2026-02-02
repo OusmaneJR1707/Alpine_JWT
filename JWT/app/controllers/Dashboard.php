@@ -64,6 +64,7 @@ class Dashboard extends Controller
             "utenti" => $utenti, 
             "datiUtente" => $datiUtente
         ];
+        
         $this->view("dashboard/admin", $data);
     }
 
