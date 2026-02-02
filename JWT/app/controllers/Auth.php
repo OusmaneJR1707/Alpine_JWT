@@ -92,7 +92,7 @@ class Auth extends Controller
                     $result["token"],
                     [
                         'expires' => time() + 600,
-                        'path' => '/Alpine_JWT/',
+                        'path' => '/ALPINE_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -108,7 +108,7 @@ class Auth extends Controller
                     $result["refresh_token"],
                     [
                         'expires' => time() + 86400,
-                        'path' => '/Alpine_JWT/',
+                        'path' => '/ALPINE_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -168,7 +168,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/Alpine_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,
@@ -228,7 +228,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/Alpine_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,
@@ -244,7 +244,7 @@ class Auth extends Controller
                 $result["token"],
                 [
                     'expires' => time() + 600,
-                    'path' => '/Alpine_JWT/',
+                    'path' => '/ALPINE_JWT/',
                     'domain' => '',
                     'secure' => false,
                     'httponly' => true,

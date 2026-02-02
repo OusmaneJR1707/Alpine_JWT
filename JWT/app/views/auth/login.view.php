@@ -94,7 +94,7 @@
     </footer>
 </body>
 <script>
-    <?php if(isset($_SESSION['error'])): ?>
+    <?php if (isset($_SESSION['error'])): ?>
         // Usiamo json_encode per gestire caratteri speciali e apici nel testo
         alert(<?php echo json_encode($_SESSION['error']); ?>);
         <?php unset($_SESSION['error']); // Puliamo l'errore dopo averlo mostrato ?>

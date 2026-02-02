@@ -25,11 +25,11 @@ define('URLROOT', 'http://localhost/PERCORSO_PROGETTO');
 // --- INFO SITO ---
 define('SITENAME', 'API');
 
-// --- SICUREZZA (IMPORTANTE) ---
-// Sostituisci queste stringhe con valori casuali, lunghi e unici!
+// --- SICUREZZA E CRITTOGRAFIA ---
+// IMPORTANTE: Genera stringhe casuali lunghe e uniche per la produzione!
+// Non usare mai questi valori di esempio in un sito live.
+// Deve essere ugualea a quello nella cartella API
+define('JWT_KEY', 'cambiami_con_una_stringa_segreta_molto_lunga_e_casuale');
 
-// Chiave segreta per firmare i token JWT
-define('JWT_KEY', 'inserisci_qui_una_stringa_casuale_molto_lunga');
-
-// Pepper per l'hashing delle password
-define('PEPPER', 'inserisci_qui_un_valore_segreto_unico');
+// Pepper per l'hashing (Aggiunge entropia alle password)
+define('PEPPER', 'cambiami_con_un_valore_segreto_unico');

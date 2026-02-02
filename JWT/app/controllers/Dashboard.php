@@ -28,7 +28,7 @@ class Dashboard extends Controller
                 header("Location: " . URLROOT . "/auth/login");
                 exit();
             }
-        } else{
+        } else {
             header("Location: " . URLROOT . "/auth/login");
             exit();
         }
@@ -64,20 +64,44 @@ class Dashboard extends Controller
         $utenti = array_filter($utenti, fn($u) => $u->id != $_SESSION["user_id"]);
 
         $data = [
-            "utenti" => $utenti, 
+            "utenti" => $utenti,
             "datiUtente" => $datiUtente
         ];
 
-        if($presenza){
-            if (!$presenza->end_datetime){
+        if ($presenza) {
+            if (!$presenza->end_datetime) {
                 $data["presenza"] = $presenza;
             }
         }
-        
+
         $this->view("dashboard/admin", $data);
     }
-    
-    public function timeHandler(){
+
+    public function user()
+    {
+        if (($_SESSION['role'] === null)) {
+            header("Location: " . URLROOT . "/auth"); //Lo rimando alla login in teoria
+            exit();
+        }
+
+        $datiUtente = $this->userModel->getUserById($_SESSION["user_id"]);
+        $presenza = $this->userModel->getUserAttendance($_SESSION["user_id"]);
+
+        $data = [
+            "datiUtente" => $datiUtente
+        ];
+
+        if ($presenza) {
+            if (!$presenza->end_datetime) {
+                $data["presenza"] = $presenza;
+            }
+        }
+
+        $this->view("dashboard/user", $data);
+    }
+
+    public function timeHandler()
+    {
         if (!isset($_SESSION['role'])) {
             header("Location: " . URLROOT . "/auth/login");
             exit();
@@ -85,18 +109,18 @@ class Dashboard extends Controller
 
         $presenza = $this->userModel->getUserAttendance($_SESSION["user_id"]);
 
-        if(!$presenza->end_datetime){ 
+        if (!$presenza->end_datetime) {
             $result = $this->userModel->setClockOut($presenza->id);
-            
-            if(!$result){
+
+            if (!$result) {
                 $errorMessage = "Errore nel salvataggio della clock out";
                 $_SESSION['error'] = $errorMessage;
                 return;
             }
         } else {
             $result = $this->userModel->createClockin($_SESSION["user_id"]);
-            
-            if(!$result){
+
+            if (!$result) {
                 $errorMessage = "Errore nella creazione della clock in";
                 $_SESSION['error'] = $errorMessage;
                 return;
@@ -106,37 +130,38 @@ class Dashboard extends Controller
         header("Location: " . URLROOT . "/dashboard");
     }
 
-    public function userinfo($params){
+    public function userinfo($params)
+    {
         if (!isset($_SESSION['role'])) {
             header("Location: " . URLROOT . "/auth/login");
             exit();
         }
 
-        if(!isset($params)){
+        if (!isset($params)) {
             header("Location: " . URLROOT . "/dashboard");
             exit();
         }
 
-        if ($_SESSION['role'] !== 3 || $_SESSION["user_id"] == $params[0]){
+        if ($_SESSION['role'] !== 3 || $_SESSION["user_id"] == $params[0]) {
             header("Location: " . URLROOT . "/dashboard");
             exit();
         }
 
         $utente = $this->userModel->getUserData($params[0]);
 
-        if(!$utente){
+        if (!$utente) {
             $errorMessage = "Errore, utente non trovato";
-            $_SESSION['error'] = $errorMessage;   
+            $_SESSION['error'] = $errorMessage;
             header("Location: " . URLROOT . "/dashboard");
             exit();
         }
 
         $presenze = $this->userModel->getUserAttendances($params[0]);
 
-        if(!$presenze){
+        if (!$presenze) {
             $presenze = [];
         }
-        
+
         $presenze = array_slice($presenze, 0, 5);
 
         $data = [
