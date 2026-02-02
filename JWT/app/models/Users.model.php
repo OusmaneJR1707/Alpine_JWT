@@ -7,6 +7,7 @@ class Users
     {
         $this->db = $db_conn;
     }
+    
     public function getAllUsers()
     {
         $query = "SELECT E.first_name, E.last_name, E.status, A.email, D.department_name FROM employees E JOIN user_accounts A ON A.employee_id = E.id JOIN departments D ON E.department_id = D.id";
@@ -16,6 +17,7 @@ class Users
 
         return $result ?? [];
     }
+
     public function getUserById($id)
     {
         $query = "SELECT 

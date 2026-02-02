@@ -137,17 +137,15 @@
                 </svg>
             </div>
             <section class="w-3/4 bg-white/90 p-5 mt-6 rounded-xl">
-                <?
-                foreach ($users as $user) {
-
-                }
+                <?php
+                foreach ($data["utenti"] as $user) {
                 ?>
                 <div class="w-full flex items-center justify-between bg-purple-400 p-3 mb-2 rounded-lg">
                     <div class="flex items-center gap-4">
                         <img src="<?= ASSETSROOT; ?>/imgs/default.png" alt="" class="size-10 rounded-full">
                         <div>
-                            <p>Fabrizio Corona</p>
-                            <p class="text-slate-800/80">falsissimo@gmail.com</p>
+                            <p><?= $user->first_name . " " . $user->last_name ?> </p>
+                            <p class="text-slate-800/80"> <?= $user->email ?></p>
                         </div>
                     </div>
                     <div>
@@ -158,6 +156,7 @@
                         </span>
                     </div>
                 </div>
+                <?php } ?>
             </section>
             <div class="flex items-center justify-center gap-4 my-8 font-medium">
                 <button
