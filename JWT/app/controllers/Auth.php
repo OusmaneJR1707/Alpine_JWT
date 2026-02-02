@@ -31,9 +31,13 @@ class Auth extends Controller
             }
         }
 
-        $this->view("auth/login");
+
+        echo isset($_COOKIE["jwt_token"]);
+
+        //$this->view("auth/login");
 
     }
+
     public function login()
     {
         if (isset($_COOKIE["jwt_token"])) { //Se c'è il token del JWT
@@ -88,7 +92,7 @@ class Auth extends Controller
                     $result["token"],
                     [
                         'expires' => time() + 600,
-                        'path' => '/ALPINE_JWT/',
+                        'path' => '/Alpine_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -104,7 +108,7 @@ class Auth extends Controller
                     $result["refresh_token"],
                     [
                         'expires' => time() + 86400,
-                        'path' => '/ALPINE_JWT/',
+                        'path' => '/Alpine_JWT/',
                         'domain' => '',
                         'secure' => false,
                         'httponly' => true,
@@ -164,7 +168,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/Alpine_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,
@@ -224,7 +228,7 @@ class Auth extends Controller
                 '',                  // Valore vuoto
                 [
                     'expires' => time() - 3600,      // Scadenza nel passato (CANCELLA SUBITO)
-                    'path' => '/ALPINE_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
+                    'path' => '/Alpine_JWT/',           // <--- FONDAMENTALE: Lo stesso path della creazione
                     'domain' => '',                  // Lo stesso dominio
                     'secure' => false,               // false in localhost
                     'httponly' => true,
@@ -240,7 +244,7 @@ class Auth extends Controller
                 $result["token"],
                 [
                     'expires' => time() + 600,
-                    'path' => '/ALPINE_JWT/',
+                    'path' => '/Alpine_JWT/',
                     'domain' => '',
                     'secure' => false,
                     'httponly' => true,

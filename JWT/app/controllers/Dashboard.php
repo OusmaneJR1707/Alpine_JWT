@@ -59,11 +59,18 @@ class Dashboard extends Controller
 
         $utenti = $this->userModel->getAllUsers();
         $datiUtente = $this->userModel->getUserById($_SESSION["user_id"]);
+        $presenza = $this->userModel->getUserAttendance($_SESSION["user_id"]);
 
         $data = [
             "utenti" => $utenti, 
             "datiUtente" => $datiUtente
         ];
+
+        if($presenza){
+            if (!$presenza->end_datetime){
+                $data["presenza"] = $presenza;
+            }
+        }
         
         $this->view("dashboard/admin", $data);
     }

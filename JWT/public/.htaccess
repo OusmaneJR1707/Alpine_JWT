@@ -4,7 +4,7 @@
 
     # ATTENZIONE: RewriteBase deve iniziare con uno slash /
     # Se la tua cartella si chiama 'compito', deve essere così:
-    RewriteBase /ALPINE_JWT/JWT/public/
+    RewriteBase /Alpine_JWT/JWT/public/
 
     # Se non è una cartella vera
     RewriteCond %{REQUEST_FILENAME} !-d

@@ -43,7 +43,11 @@ class Users
 
     public function getUserAttendance($id)
     {
-        $query = "SELECT A.start_datetime, A.end_datetime FROM attendances A WHERE A.employee_id = :employee_id AND DATE(A.start_datetime) = CURDATE()";
+        $query = "SELECT A.start_datetime, A.end_datetime 
+                  FROM attendances A 
+                  WHERE A.employee_id = :employee_id 
+                  AND DATE(A.start_datetime) = CURDATE() 
+                  ORDER BY A.start_datetime DESC LIMIT 1";
 
         $this->db->query($query);
 

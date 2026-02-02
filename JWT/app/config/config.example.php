@@ -21,6 +21,7 @@ define('APPROOT', dirname(dirname(__FILE__)));
 // Root dell'URL (Modifica in base alla cartella dove installi il progetto)
 define('URLROOT', 'http://localhost/TUO_PROGETTO/JWT');
 define('APIURLROOT', 'http://localhost/TUO_PROGETTO/API');
+define('ASSETSROOT', 'http://localhost/TUO_PROGETTO/API/public/assets');
 
 // --- INFO SITO ---
 define('SITENAME', 'API');

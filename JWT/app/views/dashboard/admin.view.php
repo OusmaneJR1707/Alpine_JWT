@@ -106,11 +106,19 @@
             </div>
             <div class="w-full flex flex-col justify-center items-center my-10 gap-5">
                 <button
-                    class="w-1/4 text-xl py-3 text-white transition-colors bg-[#8F57D5] border-2 border-white rounded-lg hover:bg-white hover:text-[#8F57D5] hover:border-[#8F57D5]">Clock
-                    in</button>
+                    class="w-1/4 text-xl py-3 text-white transition-colors bg-[#8F57D5] border-2 border-white rounded-lg hover:bg-white hover:text-[#8F57D5] hover:border-[#8F57D5]" 
+                    <?php 
+                        if ($data["presenza"]):  // If already clocked in, disable clock in
+                    ?> disabled 
+                    <?php endif; ?>
+                    >Clock in</button>
                 <button
-                    class="w-1/4 text-xl py-3 text-[#8F57D5] transition-colors bg-white border-2 border-[#8F57D5] rounded-lg hover:bg-[#8F57D5] hover:text-white hover:border-white">Clock
-                    out</button>
+                    class="w-1/4 text-xl py-3 text-[#8F57D5] transition-colors bg-white border-2 border-[#8F57D5] rounded-lg hover:bg-[#8F57D5] hover:text-white hover:border-white"
+                    <?php 
+                        if (!$data["presenza"]):  // If not clocked in, disable clock out
+                    ?> disabled 
+                    <?php endif; ?>
+                    >Clock out</button>
             </div>
             <h1 class="text-5xl items-start mt-10">I Nostri dipendenti: </h1>
             <div class="w-50 flex justify-between bg-gray-300 p-2 rounded-lg mt-10">
