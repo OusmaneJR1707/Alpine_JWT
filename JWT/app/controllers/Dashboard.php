@@ -104,8 +104,47 @@ class Dashboard extends Controller
         }
 
         header("Location: " . URLROOT . "/dashboard");
+    }
 
-        // controllo permessi
+    public function userinfo($params){
+        if (!isset($_SESSION['role'])) {
+            header("Location: " . URLROOT . "/auth/login");
+            exit();
+        }
+
+        if(!isset($params)){
+            header("Location: " . URLROOT . "/dashboard");
+            exit();
+        }
+
+        if ($_SESSION['role'] !== 3 || $_SESSION["user_id"] == $params[0]){
+            header("Location: " . URLROOT . "/dashboard");
+            exit();
+        }
+
+        $utente = $this->userModel->getUserData($params[0]);
+
+        if(!$utente){
+            $errorMessage = "Errore, utente non trovato";
+            $_SESSION['error'] = $errorMessage;   
+            header("Location: " . URLROOT . "/dashboard");
+            exit();
+        }
+
+        $presenze = $this->userModel->getUserAttendances($params[0]);
+
+        if(!$presenze){
+            $presenze = [];
+        }
+        
+        $presenze = array_slice($presenze, 0, 5);
+
+        $data = [
+            "utente" => $utente,
+            "presenze" => $presenze
+        ];
+
+        $this->view("dashboard/userinfo", $data);
     }
 
     private function validateJWT()

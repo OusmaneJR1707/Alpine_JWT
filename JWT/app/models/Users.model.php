@@ -43,6 +43,26 @@ class Users
         return $result;
     }
 
+    public function getUserAttendances($id)
+    {
+        $query = "SELECT A.id, A.start_datetime, A.end_datetime 
+                  FROM attendances A 
+                  WHERE A.employee_id = :employee_id 
+                  ORDER BY A.start_datetime DESC";
+
+        $this->db->query($query);
+
+        $this->db->bind(":employee_id", $id);
+
+        $result = $this->db->resultAssoc();
+
+        if (!$result) {
+            return false;
+        }
+
+        return $result;
+    }
+
     public function getUserAttendance($id)
     {
         $query = "SELECT A.id, A.start_datetime, A.end_datetime 
@@ -86,6 +106,34 @@ class Users
         $this->db->bind(":id", $id);
 
         $result = $this->db->execute();
+
+        if (!$result) {
+            return false;
+        }
+
+        return $result;
+    }
+
+    public function getUserData($id){
+        $query = "SELECT 
+                    E.id,
+                    E.first_name, 
+                    E.last_name, 
+                    E.role_id, 
+                    A.email, 
+                    D.department_name,
+                    E.created_at,
+                    E.updated_at,
+                    A.last_login
+                FROM employees E 
+                JOIN user_accounts A ON A.employee_id = E.id 
+                JOIN departments D ON E.department_id = D.id 
+                WHERE E.id = :id";
+
+        $this->db->query($query);
+        $this->db->bind(":id", $id);
+
+        $result = $this->db->singleResult();
 
         if (!$result) {
             return false;

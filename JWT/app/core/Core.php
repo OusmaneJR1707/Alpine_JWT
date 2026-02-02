@@ -45,7 +45,7 @@ class Core
         }
 
         // 3. GESTIONE PARAMETRI
-        $this->params = $url ? array_values($url) : [];
+        $this->params[] = $url ? array_values($url) : [];
 
         // Esegui il metodo
         call_user_func_array([$this->controller, $this->method], $this->params);
