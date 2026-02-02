@@ -106,18 +106,20 @@
             </div>
             <div class="w-full flex flex-col justify-center items-center my-10 gap-5">
                 <button
-                    class="w-1/4 text-xl py-3 text-white transition-colors bg-[#8F57D5] border-2 border-white rounded-lg hover:bg-white hover:text-[#8F57D5] hover:border-[#8F57D5]" 
+                    class="w-1/4 text-xl py-3 text-white transition-colors bg-[#8F57D5] border-2 border-white rounded-lg hover:bg-white hover:text-[#8F57D5] hover:border-[#8F57D5] disabled:bg-gray-300 disabled:text-black disabled:hover:bg-gray-300 disabled:hover:text-black disabled:border-black disabled:hover:border-black" 
                     <?php 
-                        if ($data["presenza"]):  // If already clocked in, disable clock in
+                        if (isset($data["presenza"])):  // If already clocked in, disable clock in
                     ?> disabled 
                     <?php endif; ?>
+                    onclick = "window.location = '<?=  URLROOT . '/dashboard/timeHandler' ?>'"
                     >Clock in</button>
                 <button
-                    class="w-1/4 text-xl py-3 text-[#8F57D5] transition-colors bg-white border-2 border-[#8F57D5] rounded-lg hover:bg-[#8F57D5] hover:text-white hover:border-white"
+                    class="w-1/4 text-xl py-3 text-[#8F57D5] transition-colors bg-white border-2 border-[#8F57D5] rounded-lg hover:bg-[#8F57D5] hover:text-white hover:border-white disabled:bg-gray-300 disabled:text-black disabled:hover:bg-gray-300 disabled:hover:text-black disabled:border-black disabled:hover:border-black"
                     <?php 
-                        if (!$data["presenza"]):  // If not clocked in, disable clock out
+                        if (!isset($data["presenza"])):  // If not clocked in, disable clock out
                     ?> disabled 
                     <?php endif; ?>
+                    onclick = "window.location = '<?=  URLROOT . '/dashboard/timeHandler' ?>'"
                     >Clock out</button>
             </div>
             <h1 class="text-5xl items-start mt-10">I Nostri dipendenti: </h1>
@@ -144,15 +146,26 @@
                     <div class="flex items-center gap-4">
                         <img src="<?= ASSETSROOT; ?>/imgs/default.png" alt="" class="size-10 rounded-full">
                         <div>
-                            <p><?= $user->first_name . " " . $user->last_name ?> </p>
+                            <a href="<?= URLROOT . "/dashboard/userinfo/" . $user->id ?>"><?= $user->first_name . " " . $user->last_name ?> </a>
                             <p class="text-slate-800/80"> <?= $user->email ?></p>
                         </div>
                     </div>
                     <div>
-                        <p>Corona's</p>
+                        <p class="text-right"><?= $user->department_name ?></p>
                         <span class="flex items-center gap-2">
-                            <p>Attivo</p>
-                            <div class="size-5 bg-green-400 rounded-full"></div>
+                            <p class="first-letter:uppercase"><?= $user->status ?></p>
+                            <?php
+                                $status = $user->status;
+
+                                if ($status === 'active') {
+                                    $color = 'bg-green-400';
+                                } elseif ($status === 'inactive') {
+                                    $color = 'bg-red-400';
+                                } else {
+                                    $color = 'bg-orange-400';
+                                }
+                            ?>
+                            <div class="size-5 <?= $color ?> rounded-full"></div>
                         </span>
                     </div>
                 </div>
@@ -222,6 +235,13 @@
         updateClock();
     </script>
 </body>
+<script>
+    <?php if(isset($_SESSION['error'])): ?>
+        // Usiamo json_encode per gestire caratteri speciali e apici nel testo
+        alert(<?php echo json_encode($_SESSION['error']); ?>);
+        <?php unset($_SESSION['error']); // Puliamo l'errore dopo averlo mostrato ?>
+    <?php endif; ?>
+</script>
 <script src="<?= ASSETSROOT; ?>/js/sidebar.js"></script>
 
 </html>

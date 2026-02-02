@@ -61,6 +61,8 @@ class Dashboard extends Controller
         $datiUtente = $this->userModel->getUserById($_SESSION["user_id"]);
         $presenza = $this->userModel->getUserAttendance($_SESSION["user_id"]);
 
+        $utenti = array_filter($utenti, fn($u) => $u->id != $_SESSION["user_id"]);
+
         $data = [
             "utenti" => $utenti, 
             "datiUtente" => $datiUtente
@@ -73,6 +75,37 @@ class Dashboard extends Controller
         }
         
         $this->view("dashboard/admin", $data);
+    }
+    
+    public function timeHandler(){
+        if (!isset($_SESSION['role'])) {
+            header("Location: " . URLROOT . "/auth/login");
+            exit();
+        }
+
+        $presenza = $this->userModel->getUserAttendance($_SESSION["user_id"]);
+
+        if(!$presenza->end_datetime){ 
+            $result = $this->userModel->setClockOut($presenza->id);
+            
+            if(!$result){
+                $errorMessage = "Errore nel salvataggio della clock out";
+                $_SESSION['error'] = $errorMessage;
+                return;
+            }
+        } else {
+            $result = $this->userModel->createClockin($_SESSION["user_id"]);
+            
+            if(!$result){
+                $errorMessage = "Errore nella creazione della clock in";
+                $_SESSION['error'] = $errorMessage;
+                return;
+            }
+        }
+
+        header("Location: " . URLROOT . "/dashboard");
+
+        // controllo permessi
     }
 
     private function validateJWT()
