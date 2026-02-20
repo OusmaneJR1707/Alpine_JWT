@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # Se l'URL è vuoto, vai a public/
+    RewriteRule ^$ public/ [L]
+
+    # Se l'URL non inizia già con "public/", aggiungilo davanti
+    RewriteRule ^((?!public/).*)$ public/$1 [L,NC]
+</IfModule>

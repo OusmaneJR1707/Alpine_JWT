@@ -1,0 +1,101 @@
+# ============================================
+# DIPENDENZE - Non vanno caricate su Git
+# ============================================
+
+# Composer - Dipendenze PHP
+# Le librerie PHP si reinstallano con "composer install"
+# Non caricare perché: pesanti, generabili, specifiche per ambiente
+vendor/
+API/app/vendor/
+
+# Node.js - Dipendenze JavaScript
+# Le librerie JS si reinstallano con "npm install"
+# Non caricare perché: molto pesanti (migliaia di file), riproducibili da package.json
+node_modules/
+JWT/node_modules/
+
+# ============================================
+# CONFIGURAZIONI SENSIBILI - SICUREZZA
+# ============================================
+
+# File di configurazione con credenziali
+# Non caricare perché: contengono password DB, secret key JWT, dati sensibili
+# Ogni sviluppatore deve avere la propria configurazione locale
+**/config/config.php
+!**/config/config.example.php
+.env
+.env.local
+
+# ============================================
+# FILE GENERATI AUTOMATICAMENTE
+# ============================================
+
+# CSS compilato da Tailwind
+# Non caricare perché: generato da input.css con "npm run build"
+# Si può rigenerare localmente
+JWT/public/assets/css/output.css
+
+# File di lock (opzionale, ma consigliato tenerli)
+# Commentati perché è meglio versionarli per garantire stesse versioni
+# composer.lock
+# package-lock.json
+
+# ============================================
+# SISTEMA OPERATIVO E IDE
+# ============================================
+
+# Windows
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+.directory
+
+# VS Code
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# PhpStorm
+.idea/
+
+# ============================================
+# LOG E FILE TEMPORANEI
+# ============================================
+
+# Log files
+*.log
+logs/
+*.log.*
+
+# File temporanei
+tmp/
+temp/
+*.tmp
+*.cache
+*.swp
+*.swo
+*~
+
+# ============================================
+# BACKUP E FILE DI SVILUPPO
+# ============================================
+
+# Backup
+*.bak
+*.backup
+*.old
+
+# SQL dumps (se contengono dati sensibili)
+*.sql
+*.sqlite
+*.db
